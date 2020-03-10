@@ -1,8 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
-import segoe from './assets/fonts/segoe-ui.otf';
+import segoe from '../assets/fonts/segoe-ui.otf';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 
   @font-face {
     font-family: 'Roboto';
@@ -15,5 +15,3 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto';
   }
 `;
-
-export default GlobalStyle;

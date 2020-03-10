@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
   Container,
   Row,
+  Grid,
 } from './style';
 
 import {
@@ -21,22 +22,26 @@ const Home = () => {
     getAllPokemons()
       .then((res) => {
         dispatch(handlePokemons(res.results));
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);
         console.log(err.response);
       });
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container>
       <Row>
-        {
-          pokemons.map((pokemon) => (
-            <div key={pokemon.url}>{pokemon.name}</div>
-          ))
-        }
+        <Grid>
+          {
+            pokemons.map((pokemon) => (
+              <div key={pokemon.url}>{pokemon.name}</div>
+            ))
+          }
+        </Grid>
+      </Row>
+      <Row>
+        Pages
       </Row>
     </Container>
   );
