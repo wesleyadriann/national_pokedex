@@ -14,6 +14,8 @@ import {
   handlePokemons,
 } from '../../store/actions/home';
 
+import Pokemon from './Pokemon';
+
 const Home = () => {
   const dispatch = useDispatch();
   const pokemons = useSelector((state) => state.home.pokemons);
@@ -21,7 +23,12 @@ const Home = () => {
   useEffect(() => {
     getAllPokemons()
       .then((res) => {
-        dispatch(handlePokemons(res.results));
+        const pokemonsApi = res.results.map((pokemon) => {
+          const arr = pokemon.url.split('/');
+          const id = arr[arr.length - 2];
+          return { ...pokemon, id };
+        });
+        dispatch(handlePokemons(pokemonsApi));
       })
       .catch((err) => {
         console.log(err);
@@ -35,7 +42,12 @@ const Home = () => {
         <Grid>
           {
             pokemons.map((pokemon) => (
-              <div key={pokemon.url}>{pokemon.name}</div>
+              <Pokemon
+                key={pokemon.url}
+                url={pokemon.url}
+                name={pokemon.name}
+                id={pokemon.id}
+              />
             ))
           }
         </Grid>
