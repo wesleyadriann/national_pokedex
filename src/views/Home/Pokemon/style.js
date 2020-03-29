@@ -9,6 +9,7 @@ export const Cardbody = styled.div`
   background-color: ${colors.white};
   border-radius: 7px;
   width: 100%;
+  min-height: 96px;
   display: flex;
 `;
 
@@ -18,4 +19,11 @@ export const Text = styled.p`
   font-weight: bold;
   letter-spacing: 1px;
   text-transform: capitalize;
+`;
+
+export const SpinnerContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

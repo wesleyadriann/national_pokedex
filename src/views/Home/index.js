@@ -24,8 +24,7 @@ const Home = () => {
     getAllPokemons()
       .then((res) => {
         const pokemonsApi = res.results.map((pokemon) => {
-          const arr = pokemon.url.split('/');
-          const id = arr[arr.length - 2];
+          const id = pokemon.url.split('pokemon/').pop().replace(/\D/g, '');
           return { ...pokemon, id };
         });
         dispatch(handlePokemons(pokemonsApi));

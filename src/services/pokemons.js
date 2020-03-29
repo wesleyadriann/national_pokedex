@@ -9,3 +9,11 @@ export const getAllPokemons = (page = 0, perPage = 20) => (
       .catch((err) => reject(err));
   })
 );
+
+export const getPokemon = (pokeId) => (
+  new Promise((resolve, reject) => {
+    axios.get(`${config.ENDPOINT_POKEAPI}/${pokeId}`)
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+  })
+);
