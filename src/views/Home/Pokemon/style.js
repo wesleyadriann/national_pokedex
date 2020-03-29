@@ -15,10 +15,11 @@ export const Cardbody = styled.div`
 
 export const Text = styled.p`
   color: ${colors.black};
-  font-family: 'Roboto';
   font-weight: bold;
   letter-spacing: 1px;
   text-transform: capitalize;
+  margin: 3px 0;
+  font-size: ${(props) => (props.size ? `${props.size}px` : 'initial')}
 `;
 
 export const SpinnerContainer = styled.div`
@@ -26,4 +27,15 @@ export const SpinnerContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const TypeBadge = styled.span`
+  background-color: ${(props) => colors[props.type]};
+  color: ${colors.white};
+  padding: .25em .4em;
+  border-radius: .25em;
+  font-size: 75%;
+  text-transform: capitalize;
+  margin-right: 3px;
+  font-weight: bold;
 `;

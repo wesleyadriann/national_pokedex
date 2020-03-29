@@ -13,7 +13,7 @@ export const getAllPokemons = (page = 0, perPage = 20) => (
 export const getPokemon = (pokeId) => (
   new Promise((resolve, reject) => {
     axios.get(`${config.ENDPOINT_POKEAPI}/${pokeId}`)
-      .then((res) => resolve(res))
+      .then((res) => resolve(res.data))
       .catch((err) => reject(err));
   })
 );
