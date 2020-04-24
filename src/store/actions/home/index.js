@@ -13,3 +13,10 @@ export const handleLoading = (isLoading) => (
     isLoading,
   }
 );
+
+export const handlePageChange = (page) => (
+  {
+    type: actionsTypes.HANDLEPAGECHANGE,
+    page,
+  }
+);
