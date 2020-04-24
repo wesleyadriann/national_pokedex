@@ -4,6 +4,8 @@ const INITIAL_STATE = {
   pokemons: [],
   isLoading: false,
   page: 0,
+  totalPokemons: 0,
+  pokemonsPerPage: 20,
 };
 
 const home = (state = INITIAL_STATE, action) => {
@@ -22,6 +24,11 @@ const home = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         page: action.page,
+      };
+    case actionsTypes.SETTOTALPOKEMONS:
+      return {
+        ...state,
+        totalPokemons: action.total,
       };
     default:
       return state;

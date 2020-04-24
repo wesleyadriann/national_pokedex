@@ -17,6 +17,7 @@ import {
   handlePokemons,
   handleLoading,
   handlePageChange,
+  setTotalPokemons,
 } from '../../store/actions/home';
 
 import arrow from '../../assets/images/arrow.svg';
@@ -28,6 +29,8 @@ const Home = () => {
   const pokemons = useSelector((state) => state.home.pokemons);
   const isLoading = useSelector((state) => state.home.isLoading);
   const page = useSelector((state) => state.home.page);
+  const totalPokemons = useSelector((state) => state.home.totalPokemons);
+  const pokemonsPerPage = useSelector((state) => state.home.pokemonsPerPage);
 
   const getPokemonsInformations = (pokemonsApi) => {
     const promisesArr = pokemonsApi.map((pokemon) => getPokemon(pokemon.id));
@@ -41,12 +44,13 @@ const Home = () => {
 
   const getPokemons = (pageIndex = 0) => {
     dispatch(handleLoading(true));
-    getAllPokemons(pageIndex)
+    getAllPokemons(pageIndex, pokemonsPerPage)
       .then((res) => {
         const pokemonsApi = res.results.map((pokemon) => {
           const id = pokemon.url.split('pokemon/').pop().replace(/\D/g, '');
           return { ...pokemon, id };
         });
+        dispatch(setTotalPokemons(res.count));
         getPokemonsInformations(pokemonsApi);
       })
       .catch((err) => {
@@ -57,7 +61,7 @@ const Home = () => {
   };
 
   const handlePage = (pageIndex) => {
-    if (!(pageIndex < 0) || (pageIndex >= 998)) {
+    if (!(pageIndex < 0) || (pageIndex * pokemonsPerPage >= totalPokemons)) {
       dispatch(handlePageChange(pageIndex));
       getPokemons(pageIndex);
     }
@@ -86,13 +90,22 @@ const Home = () => {
         <Buttons>
           <ButtonWithArrow
             onClick={() => handlePage(page - 1)}
+            disabled={page === 0}
           >
-            <Arrow src={arrow} rigth />
+            <Arrow
+              rigth
+              src={arrow}
+              disabled={page === 0}
+            />
           </ButtonWithArrow>
           <ButtonWithArrow
+            disabled={page * pokemonsPerPage >= totalPokemons}
             onClick={() => handlePage(page + 1)}
           >
-            <Arrow src={arrow} />
+            <Arrow
+              src={arrow}
+              disabled={page * pokemonsPerPage >= totalPokemons}
+            />
           </ButtonWithArrow>
         </Buttons>
       </Row>

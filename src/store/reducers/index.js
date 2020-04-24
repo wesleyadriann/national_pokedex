@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import home from './home';
 
-const reducers = combineReducers ({
+const reducers = combineReducers({
   home,
 });
 

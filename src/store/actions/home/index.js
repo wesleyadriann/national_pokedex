@@ -20,3 +20,10 @@ export const handlePageChange = (page) => (
     page,
   }
 );
+
+export const setTotalPokemons = (total) => (
+  {
+    type: actionsTypes.SETTOTALPOKEMONS,
+    total,
+  }
+);

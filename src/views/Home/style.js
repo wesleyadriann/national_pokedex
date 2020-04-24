@@ -34,11 +34,13 @@ export const ButtonWithArrow = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? 'initial' : 'pointer')};
 `;
 
 export const Arrow = styled.img`
   width: 25px;
   height: 25px;
-  transform: rotate(${(props) => (props.rigth ? '180deg' : '0deg')})
+  transform: rotate(${(props) => (props.rigth ? '180deg' : '0deg')});
+
+  opacity: ${(props) => (props.disabled ? '0.3' : '1')};
 `;
