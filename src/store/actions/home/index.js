@@ -6,3 +6,10 @@ export const handlePokemons = (pokemons) => (
     pokemons,
   }
 );
+
+export const handleLoading = (isLoading) => (
+  {
+    type: actionsTypes.HANDLELOADING,
+    isLoading,
+  }
+);

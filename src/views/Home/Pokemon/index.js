@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Spinner from 'react-spinkit';
 import PropTypes from 'prop-types';
-
-import { getPokemon } from '../../../services/pokemons';
 
 import {
   CardContainer,
@@ -12,22 +10,7 @@ import {
   TypeBadge,
 } from './style';
 
-const Pokemon = ({ name, id }) => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [pokemon, setPokemon] = useState({ name, id });
-
-  useEffect(() => {
-    getPokemon(pokemon.id)
-      .then((response) => {
-        setPokemon(response);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(`Error to get pokemon ${pokemon.name}, error: ${err}`);
-        setIsLoading(false);
-      });
-  }, []);
-
+const Pokemon = ({ pokemon, isLoading }) => {
   return (
     <CardContainer>
       <Cardbody>
@@ -67,13 +50,13 @@ const Pokemon = ({ name, id }) => {
 };
 
 Pokemon.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
+  pokemon: PropTypes.objectOf(PropTypes.any),
+  isLoading: PropTypes.bool,
 };
 
 Pokemon.defaultProps = {
-  id: '',
-  name: '',
+  pokemon: {},
+  isLoading: false,
 };
 
 export default Pokemon;

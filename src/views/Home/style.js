@@ -3,7 +3,7 @@ import { colors } from '../../style';
 
 export const Container = styled.div`
   min-height: 100vh;
-  background-color: ${colors.darkGray};
+  background-color: ${colors.gray};
   display: flex;
   flex-direction: column;
   justify-content: center;

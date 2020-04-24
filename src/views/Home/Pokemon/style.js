@@ -6,7 +6,7 @@ export const CardContainer = styled.div`
 `;
 
 export const Cardbody = styled.div`
-  background-color: ${colors.white};
+  background-color: ${colors.darkGray};
   border-radius: 7px;
   width: 100%;
   min-height: 96px;
@@ -14,7 +14,7 @@ export const Cardbody = styled.div`
 `;
 
 export const Text = styled.p`
-  color: ${colors.black};
+  color: ${colors.white};
   font-weight: bold;
   letter-spacing: 1px;
   text-transform: capitalize;

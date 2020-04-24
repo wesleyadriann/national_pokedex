@@ -8,7 +8,7 @@ import {
 } from './style';
 
 import {
-  getAllPokemons,
+  getAllPokemons, getPokemon,
 } from '../../services/pokemons';
 import {
   handlePokemons,
@@ -19,33 +19,46 @@ import Pokemon from './Pokemon';
 const Home = () => {
   const dispatch = useDispatch();
   const pokemons = useSelector((state) => state.home.pokemons);
+  const isLoading = useSelector((state) => state.home.isLoading);
 
-  useEffect(() => {
+  const getPokemonsInformations = (pokemonsApi) => {
+    const promisesArr = pokemonsApi.map((pokemon) => getPokemon(pokemon.id));
+
+    Promise.all(promisesArr)
+      .then((pokemonsInfo) => {
+        dispatch(handlePokemons(pokemonsInfo));
+      });
+  };
+
+  const getPokemons = () => {
     getAllPokemons()
       .then((res) => {
         const pokemonsApi = res.results.map((pokemon) => {
           const id = pokemon.url.split('pokemon/').pop().replace(/\D/g, '');
           return { ...pokemon, id };
         });
-        dispatch(handlePokemons(pokemonsApi));
+        getPokemonsInformations(pokemonsApi);
       })
       .catch((err) => {
         console.log(err);
         console.log(err.response);
       });
-  }, [dispatch]);
+  };
+
+  useEffect(() => {
+    getPokemons();
+  }, [getPokemons]);
 
   return (
     <Container>
       <Row>
         <Grid>
           {
-            pokemons.map((pokemon) => (
+            pokemons.map((pokemon, i) => (
               <Pokemon
-                key={pokemon.url}
-                url={pokemon.url}
-                name={pokemon.name}
-                id={pokemon.id}
+                key={String(i)}
+                pokemon={pokemon}
+                isLoading={isLoading}
               />
             ))
           }
