@@ -62,14 +62,14 @@ Will be create folder /build with the files. Inserts into HTTP server. [More inf
 - [Styled Components](https://www.styled-components.com)
 - [ESLint](https://eslint.org)
 
-## Versioning
-
-- [CHANGELOG](CHANGELOG.md)
-
 ## Authors
 
 - [Wesley Adriann](https://github.com/WesleyAdriann)
 
+## Project Status
+
+- **Concluded**
+
 ## URL Project Reference
 
-- [https://github.com/WesleyAdriann/react_template](https://github.com/WesleyAdriann/react_template)
+- [https://github.com/WesleyAdriann/national_pokedex](https://github.com/WesleyAdriann/national_pokedex)
