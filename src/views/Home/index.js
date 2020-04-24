@@ -89,22 +89,22 @@ const Home = () => {
       <Row>
         <Buttons>
           <ButtonWithArrow
-            onClick={() => handlePage(page - 1)}
-            disabled={page === 0}
+            onClick={() => ((page === 0 || isLoading) ? () => {} : handlePage(page - 1))}
+            disabled={page === 0 || isLoading}
           >
             <Arrow
               rigth
               src={arrow}
-              disabled={page === 0}
+              disabled={page === 0 || isLoading}
             />
           </ButtonWithArrow>
           <ButtonWithArrow
-            disabled={page * pokemonsPerPage >= totalPokemons}
-            onClick={() => handlePage(page + 1)}
+            disabled={page * pokemonsPerPage >= totalPokemons || isLoading}
+            onClick={() => ((page * pokemonsPerPage >= totalPokemons || isLoading) ? () => {} : handlePage(page + 1))}
           >
             <Arrow
               src={arrow}
-              disabled={page * pokemonsPerPage >= totalPokemons}
+              disabled={page * pokemonsPerPage >= totalPokemons || isLoading}
             />
           </ButtonWithArrow>
         </Buttons>
